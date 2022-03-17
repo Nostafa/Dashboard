@@ -19,6 +19,7 @@
     "react-vis": "^1.11.7",
     "recharts": "^2.1.9",
     "sass": "^1.49.9",
+    "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

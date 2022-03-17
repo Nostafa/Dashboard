@@ -1,7 +1,57 @@
-import React from 'react';
+import { React, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import Sidebar from '../../components/sidebar/Sidebar';
+import Navbar from '../../components/navbar/Navbar';
+import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUploadOutlined';
 import './New.scss';
-const New = () => {
-  return <div className="new">New</div>;
+
+const New = ({ title, input }) => {
+  const [file, setFile] = useState('');
+  return (
+    <div className="new">
+      <Sidebar />
+      <div className="newContainer">
+        <Navbar />
+        <div className="top">
+          <h1>{title}</h1>
+        </div>
+        <div className="bottom">
+          <div className="left">
+            <img
+              src={
+                file
+                  ? URL.createObjectURL(file)
+                  : 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
+              }
+              alt=""
+            />
+          </div>
+          <div className="right">
+            <form>
+              <div className="formInput">
+                <label htmlFor="file">
+                  Iamge: <DriveFolderUploadOutlinedIcon />
+                </label>
+                <input
+                  type="file"
+                  id="file"
+                  onChange={(e) => setFile(e.target.files[0])}
+                  style={{ display: 'none' }}
+                />
+              </div>
+              {input.map((input) => (
+                <div className="formInput" key={uuidv4()}>
+                  <label>{input.label}</label>
+                  <input type={input.type} placeholder={input.placeholder} />
+                </div>
+              ))}
+              <button>Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default New;
